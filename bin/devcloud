@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#
+# Copyright (c) 2021 JC Cormier
+# All rights reserved.
+# SPDX-License-Identifier: MIT
+# For full license text, see LICENSE file in the repo root or https://opensource.org/licenses/MIT
+#
+
+DEVCLOUD_HOME=$HOME/.devcloud
+
+DEVCLOUD_FILE=$DEVCLOUD_HOME/dockerfiles/${1}.yml
+shift
+
+echo "docker-compose -f $DEVCLOUD_FILE ${@}"
