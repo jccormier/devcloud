@@ -9,7 +9,18 @@
 
 DEVCLOUD_HOME=$HOME/.devcloud
 
-DEVCLOUD_FILE=$DEVCLOUD_HOME/dockerfiles/${1}.yml
-shift
+SERVICE=${1}
+SERVICE_FILE=$DEVCLOUD_HOME/dockerfiles/$SERVICE.yml
 
-echo "docker-compose -f $DEVCLOUD_FILE ${@}"
+shift
+if [[ ! -f $SERVICE_FILE ]]; then
+  echo
+  echo "ERROR: no such devcloud service '${SERVICE}'"
+  echo
+
+  exit 1
+
+fi
+
+docker-compose -f $SERVICE_FILE ${@}
+
