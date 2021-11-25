@@ -7,7 +7,9 @@
 # For full license text, see LICENSE file in the repo root or https://opensource.org/licenses/MIT
 #
 
-DEVCLOUD_REPO=https://github.com/jccormier/dotfiles.git
+DEVCLOUD_REPO=https://github.com/jccormier/devcloud.git
+DEVCLOUD_REPO_SSH=git@github.com:jccormier/devcloud.git
+
 DEVCLOUD_HOME=$HOME/.devcloud
 
 [[ -e "$DEVCLOUD_HOME" ]] && echo "ERROR: $DEVCLOUD_HOME already exists, aborting installation" && exit 1
@@ -18,7 +20,7 @@ if ! command -v brew >/dev/null 2>&1; then
     echo 
     echo "you may be prompted for your sudo password"
 
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 if ! command -v ansible >/dev/null 2>&1; then
@@ -33,6 +35,9 @@ echo "Cloning '$DEVCLOUD_REPO'..."
 
 mkdir -p $DEVCLOUD_HOME
 git clone $DEVCLOUD_REPO $DEVCLOUD_HOME
+cd $DEVCLOUD_HOME
+git remote remove origin
+git remote add origin $DEVCLOUD_REPO_SSH
 
 echo
 echo "To complete the installation, execute the following:"
