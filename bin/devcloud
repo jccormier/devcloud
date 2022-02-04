@@ -10,7 +10,7 @@
 DEVCLOUD_HOME=$HOME/.devcloud
 
 SERVICE=${1}
-SERVICE_FILE=$DEVCLOUD_HOME/dockerfiles/$SERVICE.yml
+SERVICE_FILE=$DEVCLOUD_HOME/files/$SERVICE/docker-compose.yml
 
 shift
 if [[ ! -f $SERVICE_FILE ]]; then
