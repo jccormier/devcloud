@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - devcloud_internal
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test1234
+      POSTGRES_DB: postgres
+
+volumes:
+  postgres:
+    driver: local
+
+networks:
+  devcloud_internal:
+    name: devcloud
